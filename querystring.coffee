@@ -2,12 +2,12 @@ QueryString =
 
   parse: (qs) ->
     dict = {}
-    qs = qs || location.search # Fetches URL parameters by default.
     qs = qs.substring(1) if qs.charAt(0) is '?'
     re = /([^=&]+)(=([^&]*))?/g # Pattern for matching parameter name and value.
-    while match = re.exec(qs)
-      key = decodeURIComponent(match[1].replace(/\+/g, ' '))
-      value = if match[3] then @.decode(match[3]) else ''
+    matches = re.exec(qs)
+    for m of matches
+      key = decodeURIComponent(m[1].replace(/\+/g, ' '))
+      value = if m[3] then @.decode(m[3]) else ''
       dict[key] = value
     dict
   decode: (s) ->
