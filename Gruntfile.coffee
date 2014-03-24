@@ -7,7 +7,8 @@ module.exports = (grunt) ->
         options:
           base: ''
           port: 9999
-    watch: {}
+    watch:
+      tasks: 'coffee'
     coffeelint:
       options:
         configFile: 'coffeelint.json'
@@ -15,6 +16,7 @@ module.exports = (grunt) ->
     coffee:
       compile:
         files:
+          'tests/unit/spec/querystring-spec.js': 'tests/unit/spec/querystring-spec.coffee'
           'querystring.js': 'querystring.coffee'
     jshint:
       all: ['querystring.js']
@@ -29,7 +31,9 @@ module.exports = (grunt) ->
 
   # Loads dependencies
   deps = grunt.file.readJSON('package.json').devDependencies
-  grunt.loadNpmTasks(key) for key, version of deps when (key isnt 'grunt' and key.indexOf('grunt') == 0)
+  for key, version of deps
+    if (key isnt 'grunt' and key isnt 'grunt-cli' and key.indexOf('grunt') == 0)
+      grunt.loadNpmTasks(key)
 
   grunt.registerTask('dev', ['connect', 'watch'])
   grunt.registerTask('build', [
