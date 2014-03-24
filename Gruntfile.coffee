@@ -38,19 +38,19 @@ module.exports = (grunt) ->
     coffeelint:
       options:
         configFile: 'coffeelint.json'
-      app: ['Gruntfile.coffee', 'querystring.coffee']
+      app: ['Gruntfile.coffee', 'src/querystring.coffee']
     coffee:
       compile:
         files:
           'tests/unit/spec/querystring-spec.js': 'tests/unit/spec/querystring-spec.coffee'
-          'querystring.js': 'querystring.coffee'
+          'build/querystring.js': 'src/querystring.coffee'
     jasmine:
       all:
-        src: 'querystring.js'
+        src: 'build/querystring.js'
         options:
           specs: 'tests/unit/spec/querystring-spec.js'
     jshint:
-      all: ['querystring.js']
+      all: ['build/querystring.js']
       options:
         jshintrc: '.jshintrc'
     'saucelabs-jasmine':
