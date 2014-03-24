@@ -34,7 +34,7 @@ module.exports = (grunt) ->
           base: ''
           port: 9999
     watch:
-      tasks: 'coffee'
+      tasks: ['coffee:compile']
     coffeelint:
       options:
         configFile: 'coffeelint.json'
@@ -44,6 +44,11 @@ module.exports = (grunt) ->
         files:
           'tests/unit/spec/querystring-spec.js': 'tests/unit/spec/querystring-spec.coffee'
           'querystring.js': 'querystring.coffee'
+    jasmine:
+      all:
+        src: 'querystring.js'
+        options:
+          specs: 'tests/unit/spec/querystring-spec.js'
     jshint:
       all: ['querystring.js']
       options:
@@ -72,12 +77,13 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks(key)
 
   grunt.registerTask('dev', ['connect', 'watch'])
-  grunt.registerTask('test', 'connect', 'saucelabs-jasmine')
+  grunt.registerTask('test', ['jasmine', 'connect', 'saucelabs-jasmine'])
   grunt.registerTask('build', [
     'coffeelint',
     'coffee',
     'jshint',
-    'uglify'
+    'uglify',
+    'jasmine'
   ])
 
   grunt.registerTask('default', ['build'])
