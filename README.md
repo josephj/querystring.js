@@ -1,7 +1,7 @@
 QueryString.js
 --------------
 
-Adds support for serializing JavaScript objects into query strings and parsing JavaScript objects from query strings format.
+Adds support for serializing JavaScript objects into query strings and parsing JavaScript objects from query strings format. This utility is compatible with Node.JS, RequireJS, and JavaScript in browsers.
 
 [![Travis CI Build Status](https://travis-ci.org/josephj/querystring.js.svg)](https://travis-ci.org/josephj/querystring.js)
 
