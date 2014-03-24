@@ -4,8 +4,7 @@ QueryString =
     dict = {}
     qs = qs.substring(1) if qs.charAt(0) is '?'
     re = /([^=&]+)(=([^&]*))?/g # Pattern for matching parameter name and value.
-    matches = re.exec(qs)
-    for m of matches
+    while m = re.exec(qs)
       key = decodeURIComponent(m[1].replace(/\+/g, ' '))
       value = if m[3] then @.decode(m[3]) else ''
       dict[key] = value

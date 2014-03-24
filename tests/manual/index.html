@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>QueryString</title>
+<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<style>
+form {
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>QueryString Utility</h1>
+
+    <h2>QueryString.parse()</h2>
+    <form role="form" id="parse-form">
+      <div class="form-group">
+        <label for="qs">QueryString:</label>
+        <input type="text" name="qs" id="qs" class="form-control" placeholder="ex. id=josephj&job=f2e" value="id=josephj&job=f2e&major=english">
+      </div>
+      <div class="form-group">
+        <label>Result:</label>
+        <div>Please see the result in console.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <h2>QueryString.stringify()</h2>
+    <form role="form" id="stringify-form">
+      <div class="form-group">
+        <label for="hash">Hash:</label>
+        <textarea rows="5" name="hash" id="hash" class="form-control">{
+  "foo": "abc",
+  "bar": "123234",
+  "xyz": "yyy"
+}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="result">Result:</label>
+        <input type="text" name="result" id="result" class="form-control" value="">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="../../querystring.js"></script>
+  <script>
+  $('#parse-form').on('submit', function (e) {
+    e.preventDefault();
+    var qs =  $(this).find('#qs').val();
+    var result = QueryString.parse(qs);
+    console.log(result);
+  });
+
+  $('#stringify-form').on('submit', function (e) {
+    e.preventDefault();
+    var hash =  $(this).find('#hash').val();
+    hash = eval('(' + hash + ')');
+    var result = QueryString.stringify(hash);
+    $(this).find('#result').val(result);
+  });
+  </script>
+</body>
+</html>
