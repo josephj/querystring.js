@@ -1,5 +1,31 @@
 module.exports = (grunt) ->
 
+  browsers = [
+    {
+      browserName: 'firefox'
+      version: '19'
+      platform: 'XP'
+    }
+    {
+      browserName: 'chrome'
+      platform: 'XP'
+    }
+    {
+      browserName: 'chrome'
+      platform: 'linux'
+    }
+    {
+      browserName: 'internet explorer'
+      platform: 'WIN8'
+      version: '10'
+    }
+    {
+      browserName: 'internet explorer'
+      platform: 'VISTA'
+      version: '9'
+    }
+  ]
+
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
     connect:
@@ -22,6 +48,16 @@ module.exports = (grunt) ->
       all: ['querystring.js']
       options:
         jshintrc: '.jshintrc'
+    'saucelabs-jasmine':
+      all:
+        options:
+          urls: ['http://127.0.0.1:9999/tests/unit/SpecRunner.html']
+          tunnelTimeout: 5
+          build: process.env.TRAVIS_JOB_ID
+          concurrency: 3
+          browsers: browsers
+          testname: 'QueryString.js Test'
+          tags: ['master']
     uglify:
       options:
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -36,6 +72,7 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks(key)
 
   grunt.registerTask('dev', ['connect', 'watch'])
+  grunt.registerTask('test', 'connect', 'saucelabs-jasmine')
   grunt.registerTask('build', [
     'coffeelint',
     'coffee',

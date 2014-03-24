@@ -4,8 +4,6 @@ describe 'QueryString', ->
     it 'should parse querystring to hash object', ->
       value = 'key1=value1&key2=value2'
       result = {"key1": "value1", "key2": "value2"}
-      console.log(QueryString.parse(value))
-      console.log(result)
       expect(QueryString.parse(value)).toEqual(result)
 
   describe 'stringify', ->
