@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 branches:
   only:
-    - master
+  - master
 before_script:
-  - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
-env:
-  global:
-  - secure: DdgJdym51ssmdB4hqAlH34wWYr0qfN98hpum3eodbPqdvNOE2Wg3ZwVLdi27Ws98MZf+12f0XZBqmJrumUKypetotl7OF6fGt4nhfAwYHYfQLD/6khUApNvTHL5j310QI/aHvyQNGpI/4hk6nrQq7abhWDVJo0m5XWG40HwAzSU=
-  - secure: Mb+fWJkMaJyPKQv3AcM9x1mOD5MacnoWQH5roqNZ+is4TaxJePeu5bKAsR33b1ujT1rBUED7vY+XpTZDtkXKNY99uV20I3wiTaNEZttVqwvpHSVsl9ZCc5Tk/wuun6WmKRegAjjJyuzqYNNPqQ8ySY0bzqiad5sIaEXP4IcJkRM=
+- curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 notifications:
   email:
-    - josephj6802@gmail.com
+  - josephj6802@gmail.com
+env:
+  global:
+  - secure: d2P5MkLB5m31nvmLkOKdX5d+JGa7toVqdVDUG4x6CPinIdHkWqGto7W9m/tTjdW9/N2TeJrYXk8q33R37oSg+9Ou8BwQMPNThWj+BrKigSnXtzdocXxAICJ8PdgtBJfbVcTILEbjVggR0+sIeTAsLNPJzoRvon1mZ6Thj7Bvukc=
+  - secure: HxLloCq86VFYzhK6oIWWP5rXnpBtR7jpkt7QKnnnPX/aH9XwMepDaHQWxyIrh/ReCLGZ+FUnMwqMbVdoe4ouSAsTNv6vglpIcox5lvIdd7pRj+VswnjUHuhPFUUX8fJv8KRe732fzvJc/Xks5F/70us1+pCBAJEpaq7WqaNuq3g=
