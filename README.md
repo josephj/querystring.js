@@ -26,3 +26,40 @@ Adds support for serializing JavaScript objects into query strings and parsing J
     var qs = QueryString.stringify(hash);
     console.log(qs); // 'key1=val1&key2=val2'
     ```
+
+## How to Test
+
+You need to make sure you have Node.JS installed in your environment.
+You also need to have a [SauceLabs](https://saucelabs.com/) (for different browser environments testing) account.
+
+1. Fork this repository.
+2. Clone the forked repository.
+3. Install `travis` gem.
+
+   ```
+   gem install travis
+   ```
+4. Install Node.JS dependencies.
+   
+   ```
+   npm install
+   ```
+5. You need to update the encrypt keys in .travis.yml. You can remove them and use the following commands to generate it. It will write to your .travis.yml automatically. 
+
+   ```
+   $ travis encrypt SAUCE_USERNAME=<Your SauceLabs User Name> -r <Your Github User Name>/querystring.js --add
+   $ travis encrypt SAUCE_ACCESS_KEY=<Your SauceLabs Access Key> -r <Your Github User Name>/querystring.js --add
+   ```
+6. You can do test with following approaches.
+   * Manual testing: Execute `grunt dev` and open the URL `http://localhost:9999/tests/unit/SpecRunner.html`
+   * Local CLI Testing: 
+   
+      ```
+      grunt jasmine
+      ```
+   * Connecting to SauceLabs for testing in different browser environments.
+    
+     ```
+     grunt saucelabs-jasmine
+     ```
+   * If you enabled the forked repository in [Travis CI](https://travis-ci.org/profile), it will test both CLI and SauceLabs automatically whenever you push.
